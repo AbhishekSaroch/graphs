@@ -1,5 +1,6 @@
 #include <iostream>
 #include <list>
+#include <queue>>
 #include <unordered_map>
 #include <vector>
 using namespace std;
@@ -26,6 +27,13 @@ public:
       }
       cout << endl;
     }
+  }
+  void bfs(int src){
+    queue<int> q;
+    unordered_map<int,bool>visited;
+    q.push(src);
+    visited[src]=true;
+    
   }
 };
 

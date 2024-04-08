@@ -1,5 +1,6 @@
 #include <iostream>
 #include <list>
+#include <queue>>
 #include <unordered_map>
 #include <vector>
 using namespace std;
@@ -25,6 +26,23 @@ public:
         cout << neighbour << ",";
       }
       cout << endl;
+    }
+  }
+  void bfs(int src){
+    queue<int> q;
+    unordered_map<int,bool>visited;
+    q.push(src);
+    visited[src]=true;
+    while(!q.empty()){
+      int fn=q.front();
+      q.pop();
+      cout<<fn<<" ";
+      for(auto neighbour:adjList[fn])){
+        if(!visited[neighbour]){
+          q.push(neighbour);
+          visited[neighbour]=true;
+        }
+      }
     }
   }
 };
