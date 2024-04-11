@@ -33,8 +33,43 @@ public:
     unordered_map<int,bool>visited;
     q.push(src);
     visited[src]=true;
-    
+    while(!q.empty()){
+      int fn=q.front();
+      q.pop();
+      cout<<fn<<" ";
+      for(auto neighbour:adjList[fn])){
+        if(!visited[neighbour]){
+          q.push(neighbour);
+          visited[neighbour]=true;
+        }
+      }
+    }
   }
+
+  bool checkCycleUsingBFS(int src,unordered_map<int,bool>&visited){
+    queue<int>q;
+    unordered_map<int,int>parent;
+    q.push(src);
+    parent[src]=-1;
+    visited[src]=true;
+    while(!q.empty()){
+      int fn=q.front();
+      q.pop();
+      for(auto nbr:adjList[fn]){
+        if(!visited[nbr]){
+          q.push(nbr);
+          visited[nbr]=true;
+          parent[nbr]=fn;
+        }else{
+          if(visited[nbr] && nbr!=parent[fn]){
+            return true;
+          }
+        }
+      }
+    }
+    return false;
+  }
+  
 };
 
 int main2() {
